@@ -1,7 +1,7 @@
 {
     "name": "freqtrade Develop",
     "build": {
-        "dockerfile": "Dockerfile",
+        "dockerfile": "Dockerfile.luno",
         "context": ".."
     },
     // Use 'forwardPorts' to make a list of ports inside the container available locally.
