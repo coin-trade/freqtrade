@@ -446,6 +446,8 @@ CONF_SCHEMA = {
         'db_url': {'type': 'string'},
         'export': {'type': 'string', 'enum': EXPORT_OPTIONS, 'default': 'trades'},
         'disableparamexport': {'type': 'boolean'},
+        'store_backtest_stats_url': {'type': 'string'},
+        'store_backtest_stats_id': {'type': 'string'},
         'initial_state': {'type': 'string', 'enum': ['running', 'stopped']},
         'force_entry_enable': {'type': 'boolean'},
         'disable_dataframe_checks': {'type': 'boolean'},

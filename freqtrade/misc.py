@@ -16,6 +16,26 @@ from freqtrade.enums import SignalTagType, SignalType
 
 logger = logging.getLogger(__name__)
 
+# dunction to send data to a url
+from typing import Any
+import requests
+
+def file_dump_url(url: str, data: Any) -> None:
+    """
+    Send data to a URL
+    :param url: URL to send data to
+    :param data: Data to send
+    """
+    import requests
+
+    json_data = rapidjson.dumps(data, default=str, number_mode=rapidjson.NM_NATIVE)
+
+    try:
+        response = requests.post(url, json=json_data)
+        response.raise_for_status()
+    except requests.exceptions.RequestException as e:
+        logger.error(f"An error occurred while sending data to URL: {url}")
+        logger.error(str(e))
 
 def file_dump_json(filename: Path, data: Any, is_zip: bool = False, log: bool = True) -> None:
     """

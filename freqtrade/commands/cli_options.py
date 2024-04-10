@@ -199,6 +199,16 @@ AVAILABLE_CLI_OPTIONS = {
         "Example: `--export-filename=user_data/backtest_results/backtest_today.json`",
         metavar="PATH",
     ),
+    "store_backtest_stats_url": Arg(
+        '--store-backtest-stats-url',
+        help='Store backtest stats to the specified URL.',
+        metavar='URL',
+    ),
+    "store_backtest_stats_id": Arg(
+        '--store-backtest-stats-id',
+        help='Identifier to use when storing backtest stats to the specified URL.',
+        metavar='URL',
+    ),
     "disableparamexport": Arg(
         '--disable-param-export',
         help="Disable automatic hyperopt parameter export.",

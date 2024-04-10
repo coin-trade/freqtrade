@@ -166,6 +166,14 @@ class Configuration:
         if 'sd_notify' in self.args and self.args['sd_notify']:
             config['internals'].update({'sd_notify': True})
 
+        if ('store_backtest_stats_url' in self.args and self.args['store_backtest_stats_url']):
+            config.update({'store_backtest_stats_url': self.args['store_backtest_stats_url']})
+            logger.info('Parameter --store-backtest-stats-url detected ...')
+
+        if ('store_backtest_stats_id' in self.args and self.args['store_backtest_stats_id']):
+            config.update({'store_backtest_stats_id': self.args['store_backtest_stats_id']})
+            logger.info('Parameter --store-backtest-stats-id detected ...')
+
     def _process_datadir_options(self, config: Config) -> None:
         """
         Extract information for sys.argv and load directory configurations

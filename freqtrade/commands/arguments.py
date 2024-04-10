@@ -24,7 +24,7 @@ ARGS_COMMON_OPTIMIZE = ["timeframe", "timerange", "dataformat_ohlcv",
 
 ARGS_BACKTEST = ARGS_COMMON_OPTIMIZE + ["position_stacking", "use_max_market_positions",
                                         "enable_protections", "dry_run_wallet", "timeframe_detail",
-                                        "strategy_list", "export", "exportfilename",
+                                        "strategy_list", "export", "exportfilename", "store_backtest_stats_url", "store_backtest_stats_id",
                                         "backtest_breakdown", "backtest_cache",
                                         "freqai_backtest_live_models"]
 

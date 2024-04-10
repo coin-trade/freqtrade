@@ -32,7 +32,8 @@ from freqtrade.optimize.optimize_reports import (generate_backtest_stats, genera
                                                  generate_trade_signal_candles,
                                                  show_backtest_results,
                                                  store_backtest_analysis_results,
-                                                 store_backtest_stats)
+                                                 store_backtest_stats,
+                                                 store_backtest_stats_url)
 from freqtrade.persistence import (CustomDataWrapper, LocalTrade, Order, PairLocks, Trade,
                                    disable_database_use, enable_database_use)
 from freqtrade.plugins.pairlistmanager import PairListManager
@@ -1414,6 +1415,10 @@ class Backtesting:
             dt_appendix = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
             if self.config.get('export', 'none') in ('trades', 'signals'):
                 store_backtest_stats(self.config['exportfilename'], self.results, dt_appendix)
+
+            # if export_url is set, upload the results to the specified URL
+            if self.config.get('store_backtest_stats_url'):
+                store_backtest_stats_url(self.config.get('store_backtest_stats_url'), self.config.get('store_backtest_stats_id', ""), self.results)
 
             if (self.config.get('export', 'none') == 'signals' and
                     self.dataprovider.runmode == RunMode.BACKTEST):

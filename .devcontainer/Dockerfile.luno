@@ -19,7 +19,7 @@ USER ftuser
 RUN pip install --user autopep8 -r docs/requirements-docs.txt -r requirements-dev.txt --no-cache-dir
 
 # luno fixes in the cctx library
-COPY patch/cctx/ /home/ftuser/.local/lib/python3.11/site-packages/ccxt/
+COPY patch/cctx/ /home/ftuser/.local/lib/python3.12/site-packages/ccxt/
 
 # Empty the ENTRYPOINT to allow all commands
 ENTRYPOINT []

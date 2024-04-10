@@ -3,7 +3,7 @@ from pathlib import Path
 from typing import Dict
 
 from freqtrade.constants import LAST_BT_RESULT_FN
-from freqtrade.misc import file_dump_joblib, file_dump_json
+from freqtrade.misc import file_dump_joblib, file_dump_json, file_dump_url
 from freqtrade.optimize.backtest_caching import get_backtest_metadata_filename
 from freqtrade.types import BacktestResultType
 
@@ -42,6 +42,25 @@ def store_backtest_stats(
     file_dump_json(latest_filename, {'latest_backtest': str(filename.name)})
 
     return filename
+
+
+def store_backtest_stats_url(
+        url: str, id: str, stats: BacktestResultType) -> None:
+    """
+    Stores backtest results to a URL
+    :param url: URL to send data to
+    :param stats: Dataframe containing the backtesting statistics
+    :param dtappendix: Datetime to use for the filename
+    """
+
+    # Don't mutate the original stats dict.
+    stats_copy = {
+        'id': id,
+        'metadata': stats['metadata'],
+        'strategy': stats['strategy'],
+        'strategy_comparison': stats['strategy_comparison'],
+    }
+    file_dump_url(url, stats_copy)
 
 
 def _store_backtest_analysis_data(
