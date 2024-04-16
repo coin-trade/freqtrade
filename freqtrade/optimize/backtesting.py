@@ -566,7 +566,8 @@ class Backtesting:
 
         if stake_amount is not None and stake_amount < 0.0:
             amount = amount_to_contract_precision(
-                abs(stake_amount * trade.leverage) / current_rate, trade.amount_precision,
+                abs(stake_amount * trade.amount / trade.stake_amount),
+                trade.amount_precision,
                 self.precision_mode, trade.contract_size)
             if amount == 0.0:
                 return trade
@@ -1393,7 +1394,6 @@ class Backtesting:
     def start(self) -> None:
         """
         Run backtesting end-to-end
-        :return: None
         """
         data: Dict[str, Any] = {}
 
