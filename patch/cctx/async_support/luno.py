@@ -9,6 +9,8 @@ from ccxt.base.types import Balances, Currency, Int, Market, Order, OrderBook, O
 from typing import List
 from ccxt.base.errors import ExchangeError
 from ccxt.base.errors import ArgumentsRequired
+from ccxt.base.errors import BadRequest
+from ccxt.base.errors import NotSupported
 from ccxt.base.decimal_to_precision import TICK_SIZE
 from ccxt.base.precise import Precise
 
@@ -819,6 +821,10 @@ class luno(Exchange, ImplicitAPI):
 
 
     def parse_ohlcvs(self, ohlcvs, market=None, timeframe='1m', since: Int = None, limit: Int = None):
+        status = self.safe_string(ohlcvs, 's')
+        if status != 'ok':
+            return []
+
         results = []
         timestamp = self.safe_value(ohlcvs, 't')
         high = self.safe_value(ohlcvs, 'h')

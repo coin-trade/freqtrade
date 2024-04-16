@@ -824,6 +824,10 @@ class luno(Exchange, ImplicitAPI):
 
 
     def parse_ohlcvs(self, ohlcvs, market=None, timeframe='1m', since: Int = None, limit: Int = None):
+        status = self.safe_string(ohlcvs, 's')
+        if status != 'ok':
+            return []
+
         results = []
         timestamp = self.safe_value(ohlcvs, 't')
         high = self.safe_value(ohlcvs, 'h')
