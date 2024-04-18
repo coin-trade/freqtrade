@@ -19,6 +19,6 @@ class Luno(Exchange):
     """
 
     _ft_has: Dict = {
-        "ohlcv_candle_limit": 1000,
+        "ohlcv_candle_limit": 2000,
         "ohlcv_partial_candle": True
     }
