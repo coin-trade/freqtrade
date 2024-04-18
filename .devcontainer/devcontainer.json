@@ -38,10 +38,13 @@
         ],
         "vscode": {
             "extensions": [
-                "ms-python.vscode-pylance",
+                "ms-python.python",
                 "ms-python.debugpy",
-                "ms-python.python"
+                "ms-toolsai.jupyter",
+                "ms-python.vscode-pylance",
+                "davidanson.vscode-markdownlint",
+                "makhan.epoch-converter"
             ]
-        },
+        }
     }
 }
