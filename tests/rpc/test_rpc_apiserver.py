@@ -72,8 +72,10 @@ def botclient(default_conf, mocker):
         ApiServer.shutdown()
 
 
-def client_post(client: TestClient, url, data={}):
+def client_post(client: TestClient, url, data=None):
 
+    if data is None:
+        data = {}
     return client.post(url,
                        json=data,
                        headers={'Authorization': _basic_auth_str(_TEST_USER, _TEST_PASS),
@@ -82,8 +84,10 @@ def client_post(client: TestClient, url, data={}):
                                 })
 
 
-def client_patch(client: TestClient, url, data={}):
+def client_patch(client: TestClient, url, data=None):
 
+    if data is None:
+        data = {}
     return client.patch(url,
                         json=data,
                         headers={'Authorization': _basic_auth_str(_TEST_USER, _TEST_PASS),
@@ -1619,7 +1623,7 @@ def test_api_pair_history(botclient, mocker):
     assert 'data' in result
     data = result['data']
     assert len(data) == 289
-    # analyed DF has 30 columns
+    # analyzed DF has 30 columns
     assert len(result['columns']) == 30
     assert len(data[0]) == 30
     date_col_idx = [idx for idx, c in enumerate(result['columns']) if c == 'date'][0]
